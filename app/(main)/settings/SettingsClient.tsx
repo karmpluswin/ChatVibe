@@ -421,7 +421,7 @@ export default function SettingsClient({ user }: { user: UserData }) {
         </div>
 
         {/* Save button */}
-        <div className="mt-6 flex items-center gap-3">
+        <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-3">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
