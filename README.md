@@ -1,6 +1,6 @@
 # ChatVibe
 
-> Real-time chat app with 1-on-1 & group messaging, emoji reactions, file sharing, typing indicators, and OAuth — built with Next.js 14, Socket.io, MongoDB & Framer Motion.
+> Real-time chat app with 1-on-1 & group messaging, emoji reactions, file sharing, typing indicators, and OAuth, built with Next.js 14, Socket.io, MongoDB & Framer Motion.
 
 **Live demo:** [`ChatVibe`](https://chatvibe-online.vercel.app) &nbsp;
 
