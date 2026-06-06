@@ -1,44 +1,16 @@
-# 
-```
- ██████╗██╗  ██╗ █████╗ ████████╗██╗   ██╗██╗██████╗ ███████╗
-██╔════╝██║  ██║██╔══██╗╚══██╔══╝██║   ██║██║██╔══██╗██╔════╝
-██║     ███████║███████║   ██║   ██║   ██║██║██████╔╝█████╗  
-██║     ██╔══██║██╔══██║   ██║   ╚██╗ ██╔╝██║██╔══██╗██╔══╝  
-╚██████╗██║  ██║██║  ██║   ██║    ╚████╔╝ ██║██████╔╝███████╗
- ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝     ╚═══╝  ╚═╝╚═════╝ ╚══════╝
-```
+# ChatVibe
 
-**Connect. Chat. Vibe.**
+> Real-time chat app with 1-on-1 & group messaging, emoji reactions, file sharing, typing indicators, and OAuth — built with Next.js 14, Socket.io, MongoDB & Framer Motion.
 
-A full-stack real-time chat application built with Next.js 14, Socket.io, MongoDB, and Framer Motion.
-
----
-
-## Live Demo
-
-- Frontend: https://chatvibe-online.vercel.app
-- Socket Server: https://chatvibe-gqw1.onrender.com
+**Live demo:** [`ChatVibe`](https://chatvibe-online.vercel.app) &nbsp;
 
 ---
 
 ## Tech Stack
 
-**Frontend**
-- Next.js 14 with App Router
-- TypeScript in strict mode
-- Tailwind CSS for styling
-- Framer Motion for animations
-- Zustand for client state management
-- TanStack Query for server state
-- NextAuth.js v5 for authentication
-- React Hook Form and Zod for form validation
+**Frontend** — Next.js 14 (App Router), TypeScript, Tailwind CSS, Framer Motion, Zustand, TanStack Query, NextAuth.js v5, React Hook Form, Zod
 
-**Backend**
-- Socket.io server deployed on Render
-- MongoDB with Mongoose ODM
-- Upstash Redis for online status tracking
-- Cloudinary for image and file storage
-- bcryptjs for password hashing
+**Backend** — Socket.io on Render, MongoDB with Mongoose, Upstash Redis, Cloudinary, bcryptjs
 
 ---
 
@@ -53,7 +25,7 @@ A full-stack real-time chat application built with Next.js 14, Socket.io, MongoD
 - Read receipts with double checkmarks
 - Unread message badges per conversation
 - Tab filters for All Chats, Groups, and Unread
-- Authentication via email and password, Google, and GitHub OAuth
+- Authentication via email/password, Google, and GitHub OAuth
 - Dark and light theme toggle
 - Responsive design for mobile and desktop
 - Drag and drop file uploads
@@ -61,6 +33,7 @@ A full-stack real-time chat application built with Next.js 14, Socket.io, MongoD
 ---
 
 ## Project Structure
+
 ```
 chatvibe/
 ├── app/
@@ -84,7 +57,7 @@ chatvibe/
 ├── server/
 │   └── index.ts                 # Socket.io server entry point
 ├── models/                      # Mongoose schemas
-├── lib/                         # Database, auth, redis, cloudinary, utils
+├── lib/                         # Database, auth, Redis, Cloudinary, utils
 ├── providers/                   # React context providers
 ├── store/                       # Zustand state stores
 ├── hooks/                       # Custom React hooks
@@ -93,29 +66,27 @@ chatvibe/
 
 ---
 
-## Local Development Setup
+## Local Development
 
 ### Prerequisites
 
-- Node.js 18 or higher
-- A MongoDB Atlas account
-- A Cloudinary account
-- An Upstash Redis account
+- Node.js 18+
+- MongoDB Atlas account
+- Cloudinary account
+- Upstash Redis account
 
-### 1. Clone the repository
+### 1. Clone the repo
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/chatvibe.git
 cd chatvibe
-```
-
-### 2. Install dependencies
-```bash
 npm install --legacy-peer-deps
 ```
 
-### 3. Configure environment variables
+### 2. Configure environment variables
 
-Create a `.env.local` file in the root directory and fill in your values:
+Create `.env.local` in the root directory:
+
 ```env
 # Database
 MONGODB_URI=your_mongodb_atlas_connection_string
@@ -145,21 +116,31 @@ UPSTASH_REDIS_REST_TOKEN=your_upstash_token
 NEXT_PUBLIC_SOCKET_URL=http://localhost:3001
 ```
 
-### 4. Run the development servers
+### 3. Run the dev servers
 
-Open two terminal windows.
-
-Terminal 1 — Next.js frontend:
 ```bash
+# Terminal 1
 npm run dev:next
-```
 
-Terminal 2 — Socket.io server:
-```bash
+# Terminal 2
 npm run dev:socket
 ```
 
-Then open http://localhost:3000 in your browser.
+Open http://localhost:3000.
+
+---
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Run Next.js and socket server together |
+| `npm run dev:next` | Next.js only |
+| `npm run dev:socket` | Socket server only with ts-node |
+| `npm run build` | Build Next.js for production |
+| `npm run build:socket` | Compile socket server TypeScript to `dist/` |
+| `npm run start:socket` | Run the compiled socket server |
+| `npm run lint` | Run ESLint |
 
 ---
 
@@ -167,54 +148,37 @@ Then open http://localhost:3000 in your browser.
 
 ### Frontend on Vercel
 
-1. Push the repository to GitHub
-2. Go to vercel.com and import the repository
-3. Add all environment variables from your `.env.local`
-4. Set `NEXTAUTH_URL` to your Vercel production domain
-5. Set `NEXT_PUBLIC_SOCKET_URL` to your Render socket server URL
-6. Deploy
+1. Push the repo to GitHub and import it on vercel.com
+2. Add all environment variables from `.env.local`
+3. Set `NEXTAUTH_URL` to your Vercel production domain
+4. Set `NEXT_PUBLIC_SOCKET_URL` to your Render socket server URL
+5. Deploy
 
 ### Socket Server on Render
 
-The socket server lives in `server/index.ts` and is compiled to plain JavaScript before running.
-
-Set these in your Render service settings:
 ```
 Build Command:  npm ci && npm run build:socket
 Start Command:  npm run start:socket
 ```
 
-No additional environment variables are needed on Render. The `PORT` is injected automatically.
+`PORT` is injected automatically by Render — no extra config needed.
 
-### MongoDB Atlas Network Access
+### MongoDB Atlas
 
-Go to MongoDB Atlas → Network Access → Add IP Address → Allow Access from Anywhere (`0.0.0.0/0`) so both Vercel and Render can connect to your database.
+Go to Network Access and add `0.0.0.0/0` so both Vercel and Render can connect.
 
-### Google and GitHub OAuth Callbacks
+### OAuth Callback URLs
 
-After deploying to Vercel, update your OAuth app settings:
+After deploying, update your OAuth apps:
 
-Google Console — add this to Authorized Redirect URIs:
+**Google Console — Authorized Redirect URIs:**
 ```
 https://your-app.vercel.app/api/auth/callback/google
 ```
 
-GitHub OAuth App — set the callback URL to:
+**GitHub OAuth App — Callback URL:**
 ```
 https://your-app.vercel.app/api/auth/callback/github
-```
-
----
-
-## Available Scripts
-```bash
-npm run dev            # Run Next.js and socket server together
-npm run dev:next       # Run Next.js only
-npm run dev:socket     # Run socket server only with ts-node
-npm run build          # Build Next.js for production
-npm run build:socket   # Compile socket server TypeScript to dist/
-npm run start:socket   # Run the compiled socket server
-npm run lint           # Run ESLint
 ```
 
 ---
@@ -236,28 +200,17 @@ npm run lint           # Run ESLint
 | Service | Purpose | Free Tier |
 |---------|---------|-----------|
 | Vercel | Frontend hosting | Unlimited deployments |
-| Render | Socket.io server | 750 hours per month |
-| MongoDB Atlas | Database | 512MB storage |
-| Cloudinary | Image and file storage | 25GB |
-| Upstash Redis | Online status caching | 10,000 requests per day |
-
----
-
-## What Was Changed to Make the Backend Deployable on Render
-
-- Updated `server/index.ts` to use `process.env.PORT` first so Render can inject its required port, with fallback to `SOCKET_PORT` and then `3001`
-- Added a simple HTTP health check response so Render marks the service as healthy instead of failing on startup
-- Added `build:socket` script to `package.json` that compiles TypeScript with `tsc -p tsconfig.server.json`
-- Added `start:socket` script to `package.json` that runs the compiled output with `node dist/index.js`
-- Verified that `tsconfig.server.json` outputs the compiled entry point to `dist/index.js`
+| Render | Socket.io server | 750 hours/month |
+| MongoDB Atlas | Database | 512 MB storage |
+| Cloudinary | Image and file storage | 25 GB |
+| Upstash Redis | Online status caching | 10,000 requests/day |
 
 ---
 
 ## License
 
-MIT License. Feel free to use this project for learning or as a base for your own applications.
+MIT — feel free to use this as a learning reference or as a base for your own project.
 
 ---
 
-Built by Karmjeet Chauhan: a student project, built with curiosity and a lot of debugging.
-Verify
+Built by Karmjeet Chauhan.
