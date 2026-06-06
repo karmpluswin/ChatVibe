@@ -235,10 +235,7 @@ function RightPanel({ children }: { children: React.ReactNode }) {
         <div className="w-full max-w-md">{children}</div>
       </div>
 
-      {/* Footer */}
-      <div className="text-center pb-4 text-on-surface-variant/30 text-[10px] uppercase tracking-widest font-bold">
-        Powered by VibeOS
-      </div>
+
     </section>
   );
 }
